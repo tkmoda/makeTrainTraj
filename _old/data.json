@@ -1,0 +1,32 @@
+[
+    {
+        "id": "document",
+        "name": "name",
+        "version": "1.0"
+    },
+    {
+        "id": "time_hayabusa_up_19781003",
+        "name": "time_hayabusa_up_19781003",
+        "description": "",
+        "availability": "1978-10-03T12:00:00Z/1978-10-04T12:00:00Z",
+        "position": {
+            "epoch": "1978-10-03T00:00:00Z",
+            "cartographicDegrees": []
+        },
+        "billboard": {
+            "image": "imageURL.png",
+            "scale": 0.3
+        },
+        "point": {
+            "color": {
+                "rgba": [
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            },
+            "pixelSize": 8
+        }
+    }
+]

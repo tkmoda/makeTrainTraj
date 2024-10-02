@@ -1,0 +1,91 @@
+[
+    {
+        "id": "document",
+        "name": "name",
+        "version": "1.0"
+    },
+    {
+        "id": "time_sakura-nagasaki_down_19820302",
+        "name": "time_sakura-nagasaki_down_19820302",
+        "description": "",
+        "availability": "1978-10-03T12:00:00Z/1978-10-04T12:00:00Z",
+        "position": {
+            "epoch": "1978-10-03T00:00:00Z",
+            "cartographicDegrees": [
+                123120.0,
+                130.16111,
+                33.21911,
+                100.0,
+                127020.0,
+                130.041505,
+                32.851235,
+                100.0,
+                127080.0,
+                130.041505,
+                32.851235,
+                100.0,
+                128400.0,
+                129.869475,
+                32.75465,
+                100.0
+            ]
+        },
+        "billboard": {
+            "image": "imageURL.png",
+            "scale": 0.3
+        },
+        "point": {
+            "color": {
+                "rgba": [
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            },
+            "pixelSize": 8
+        }
+    },
+    {
+        "id": "time_sakura-nagasaki_down_19820302-2",
+        "name": "time_sakura-nagasaki_down_19820302",
+        "description": "",
+        "availability": "1978-10-03T12:00:00Z/1978-10-04T12:00:00Z",
+        "position": {
+            "epoch": "1978-10-02T00:00:00Z",
+            "cartographicDegrees": [
+                123120.0,
+                130.16111,
+                33.21911,
+                100.0,
+                127020.0,
+                130.041505,
+                32.851235,
+                100.0,
+                127080.0,
+                130.041505,
+                32.851235,
+                100.0,
+                128400.0,
+                129.869475,
+                32.75465,
+                100.0
+            ]
+        },
+        "billboard": {
+            "image": "imageURL.png",
+            "scale": 0.3
+        },
+        "point": {
+            "color": {
+                "rgba": [
+                    255,
+                    255,
+                    255,
+                    255
+                ]
+            },
+            "pixelSize": 8
+        }
+    }
+]
