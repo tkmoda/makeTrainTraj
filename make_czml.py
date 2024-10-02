@@ -9,6 +9,7 @@ df_station = pd.read_csv(station_list_path)
 
 standard_time = datetime.datetime(1978,10,2,00,00,00)
 
+
 def getCZML(id, name, description, txyz):
     return [
         {
