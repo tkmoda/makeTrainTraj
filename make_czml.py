@@ -1,16 +1,33 @@
 import json, numpy, glob, os
 import pandas as pd
 import datetime
+import geopandas as gpd
+from scipy.spatial import cKDTree
 
-station_list_path = r"C:\Users\takumi\Documents\railway_data\station_list2.csv"
-time_paths = glob.glob(r"C:\Users\takumi\Documents\railway_data\time_*.csv")
+def main():
+    rootFolderath = os.path.dirname(__file__)
+    # 駅リスト（駅名、位置情報）のファイルパス
+    stationList_path = os.path.join(rootFolderath, r"stationlist\station_list2.csv")
+    # time_paths = glob.glob(r"C:\Users\takumi\Documents\railway_data\time_*.csv")1
+    # 時刻表情報のファイルパス
+    timetablepath = os.path.join(rootFolderath, r"timetable\time_hayabusa_up_19781003.csv")
+    # timetablepath = os.path.join(rootFolderath, r"timetable\time_hayabusa_down_19781003.csv")
+    # 列車の軌跡情報のファイルパス
+    trajectorypath = os.path.join(rootFolderath, r"trajectory\trajectory_hayabusa.csv")
+    # CZMLファイルのパス
+    outputFolderath = os.path.join(rootFolderath, r"czml")
 
-df_station = pd.read_csv(station_list_path)
+    standard_time = datetime.datetime(1978,10,2,00,00,00)
 
-standard_time = datetime.datetime(1978,10,2,00,00,00)
+    df_time = pd.read_csv(timetablepath, encoding="utf8")
+    df_traj = pd.read_csv(trajectorypath, encoding="shift_jis")
+    df_station = pd.read_csv(stationList_path)
 
+    filename = os.path.splitext(os.path.basename(timetablepath))[0]
 
-def getCZML(id, name, description, txyz):
+    makeCZML(df_time, df_traj, df_station, outputFolderath, standard_time, filename, filename, "")
+
+def getCZMLData(id, name, description, txyz):
     return [
         {
             "id": "document",
@@ -60,27 +77,63 @@ def getCZML(id, name, description, txyz):
     ]
 
 
-for time_path in time_paths:
-    filename = os.path.splitext(os.path.basename(time_path))[0]
-    id = filename
-    name = filename
+def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, id="", name="", description="" ):
     description = ""
 
-    df_time = pd.read_csv(time_path, encoding="utf8")
+    # standard timeからの秒数を計算
     df_time["時刻"] = pd.to_datetime(df_time["時刻"])
     df_time["時刻"] = df_time["時刻"] - standard_time
     df_time["秒数"] = df_time["時刻"].dt.total_seconds()
 
-    df_merge = df_time.merge(df_station, left_on = "駅名", right_on = "旧駅名", how = "left")
-    df_out = df_merge[["秒数", "X", "Y", "Z"]]
+    df_merge = df_time.merge(df_st, left_on = "駅名", right_on = "旧駅名", how = "left")
+
+    gdf_time = gpd.GeoDataFrame(df_merge, geometry=gpd.points_from_xy(df_merge.X, df_merge.Y, df_merge.Z), crs="EPSG:6668")
+    gdf_traj = gpd.GeoDataFrame(df_traj, geometry=gpd.points_from_xy(df_traj.X, df_traj.Y, df_traj.Z), crs="EPSG:6668")
+
+    n_time = numpy.array(list(gdf_time.geometry.apply(lambda x: (x.x, x.y))))
+    n_traj = numpy.array(list(gdf_traj.geometry.apply(lambda x: (x.x, x.y))))
+    btree = cKDTree(n_traj)
+    dist, idx = btree.query(n_time, k=1)
+    gdf_nearest = gdf_traj.iloc[idx].drop(columns="geometry").reset_index(drop=True)
+
+    ## 時刻表に距離、速度を追記する
+    gdf_time2 = pd.concat([
+        gdf_time.reset_index(drop=True), 
+        gdf_nearest, 
+        pd.Series(gdf_nearest["distance"].diff(-1) / gdf_time["秒数"].diff(-1), name="speed"), 
+        pd.Series(gdf_nearest["distance"].diff(-1) * -1 , name="diff")
+        ], axis=1)
+    print(gdf_time2)
+ 
+    l = []
+    for i, row in gdf_time2.iterrows():
+        if row["diff"] > 0:
+           gdf_partTraj = gdf_traj[(gdf_traj["distance"] >= row["distance"]) & (gdf_traj["distance"] < row["distance"] + row["diff"])]
+        else:
+           gdf_partTraj = gdf_traj[(gdf_traj["distance"] <= row["distance"]) & (gdf_traj["distance"] > row["distance"] + row["diff"])]
+
+        gdf_partTraj["time"] = row["秒数"] + (gdf_partTraj["distance"] - row["distance"]) / row["speed"]
+        l.append(gdf_partTraj)
+
+    gdf_txyz = pd.concat(l)
+    # gdf_time2.to_csv(r"C:\Users\takumi\Documents\makeTrainTraj\test.csv", encoding="shift_jis")
+    # gdf_txyz.to_csv(r"C:\Users\takumi\Documents\makeTrainTraj\xyz.csv", encoding="shift_jis")
+
+
+    ## ===================================================
+
+    # df_out = df_merge[["秒数", "X", "Y", "Z"]]
+    df_out = gdf_txyz[["time", "X", "Y", "Z"]]
 
     txyz = []
     for set in df_out.values.tolist():
         txyz.extend(set)
 
-    base = getCZML(id, name, description, txyz)
+    base = getCZMLData(id, name, description, txyz)
+    outputFileath = os.path.join(outputFolderath, "{0}.czml".format(id))
 
-    with open(r'C:\Users\takumi\Documents\railway_data\{0}.czml'.format(filename), 'w') as f:
+    with open(outputFileath, 'w') as f:
         json.dump(base, f, indent=4)
 
 
+main()
