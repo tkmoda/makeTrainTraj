@@ -4,28 +4,102 @@ import datetime
 import geopandas as gpd
 from scipy.spatial import cKDTree
 
+
 def main():
     rootFolderath = os.path.dirname(__file__)
-    # 駅リスト（駅名、位置情報）のファイルパス
-    stationList_path = os.path.join(rootFolderath, r"stationlist\station_list2.csv")
-    # time_paths = glob.glob(r"C:\Users\takumi\Documents\railway_data\time_*.csv")1
-    # 時刻表情報のファイルパス
-    timetablepath = os.path.join(rootFolderath, r"timetable\time_hayabusa_up_19781003.csv")
-    # timetablepath = os.path.join(rootFolderath, r"timetable\time_hayabusa_down_19781003.csv")
-    # 列車の軌跡情報のファイルパス
-    trajectorypath = os.path.join(rootFolderath, r"trajectory\trajectory_hayabusa.csv")
-    # CZMLファイルのパス
-    outputFolderath = os.path.join(rootFolderath, r"czml")
+    # rootFolderath = r"/Users/takumi/Documents/tech/makeTrainTraj"
+    settings = [
+        {
+            "name" : "はやぶさ（（上り）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_hayabusa_up_19781003.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_hayabusa.csv")
+        },
+        {
+            "name" : "はやぶさ（（下り）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_hayabusa_down_19781003.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_hayabusa.csv")
+        },
+        {
+            "name" : "さくら（上り）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura_up_19820302.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura.csv")
+        },
+        {
+            "name" : "さくら（下り）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura_down_19820302.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura.csv")
+        },
+        {
+            "name" : "さくら（上り：長崎）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura-nagasaki_up_19820302.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura-nagasaki.csv")
+        },
+        {
+            "name" : "さくら（下り：長崎）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura-nagasaki_down_19820302.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura-nagasaki.csv")
+        },
+        {
+            "name" : "さくら（上り：佐世保）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura-sasebo_up_19820302.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura-sasebo.csv")
+        },
+        {
+            "name" : "さくら（下り：佐世保）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura-sasebo_down_19820302.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura-sasebo.csv")
+        },
+        {
+            "name" : "富士（上り）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_fuji_up_19820302.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_fuji.csv")
+        },
+        {
+            "name" : "富士（下り）",
+            "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
+            "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_fuji_down_19820302.csv"),
+            "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_fuji.csv")
+        },
+    ]
+    # print(settings[0]["stationList_path"])
 
-    standard_time = datetime.datetime(1978,10,2,00,00,00)
+    for setting in settings:
+        # 駅リスト（駅名、位置情報）のファイルパス
+        # stationList_path = os.path.join(rootFolderath, r"stationlist",r"station_list2.csv")
+        stationList_path = setting["stationList_path"]
 
-    df_time = pd.read_csv(timetablepath, encoding="utf8")
-    df_traj = pd.read_csv(trajectorypath, encoding="shift_jis")
-    df_station = pd.read_csv(stationList_path)
+        # time_paths = glob.glob(r"C:\Users\takumi\Documents\railway_data\time_*.csv")1
+        # 時刻表情報のファイルパス
+        # timetablepath = os.path.join(rootFolderath, r"timetable",r"time_hayabusa_up_19781003.csv")
+        timetablepath = setting["timetablepath"]
+        
+        # timetablepath = os.path.join(rootFolderath, r"timetable",r"time_hayabusa_down_19781003.csv")
+        # 列車の軌跡情報のファイルパス
+        # trajectorypath = os.path.join(rootFolderath, r"trajectory",r"trajectory_hayabusa.csv")
+        trajectorypath = setting["trajectorypath"]
+        
 
-    filename = os.path.splitext(os.path.basename(timetablepath))[0]
+        # CZMLファイルのパス
+        outputFolderath = os.path.join(rootFolderath, r"czml")
 
-    makeCZML(df_time, df_traj, df_station, outputFolderath, standard_time, filename, filename, "")
+        standard_time = datetime.datetime(1978,10,2,00,00,00)
+
+        df_time = pd.read_csv(timetablepath, encoding="utf8")
+        df_traj = pd.read_csv(trajectorypath, encoding="shift_jis")
+        df_station = pd.read_csv(stationList_path)
+
+        filename = os.path.splitext(os.path.basename(timetablepath))[0]
+
+        makeCZML(df_time, df_traj, df_station, outputFolderath, standard_time, filename, filename, "")
 
 def getCZMLData(id, name, description, txyz):
     return [
@@ -39,6 +113,11 @@ def getCZMLData(id, name, description, txyz):
             "name": name,
             "description": description,
             "availability": "1978-10-03T12:00:00Z/1978-10-04T12:00:00Z",
+            "model": {
+                "gltf": "Abstract_train.glb",
+                "scale": 10.0,
+                "minimumPixelSize": 0.1
+            },
             "position": {
                 "epoch": "1978-10-03T00:00:00Z",
                 "cartographicDegrees": txyz
@@ -59,6 +138,11 @@ def getCZMLData(id, name, description, txyz):
             "name": name,
             "description": description,
             "availability": "1978-10-03T12:00:00Z/1978-10-04T12:00:00Z",
+            "model": {
+                "gltf": "Abstract_train.glb",
+                "scale": 10.0,
+                "minimumPixelSize": 0.1
+            },
             "position": {
                 "epoch": "1978-10-02T00:00:00Z",
                 "cartographicDegrees": txyz
@@ -96,23 +180,27 @@ def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, id="", nam
     dist, idx = btree.query(n_time, k=1)
     gdf_nearest = gdf_traj.iloc[idx].drop(columns="geometry").reset_index(drop=True)
 
-    ## 時刻表に距離、速度を追記する
+    ## 時刻表に距離、駅間の平均速度を追記する
     gdf_time2 = pd.concat([
         gdf_time.reset_index(drop=True), 
         gdf_nearest, 
         pd.Series(gdf_nearest["distance"].diff(-1) / gdf_time["秒数"].diff(-1), name="speed"), 
         pd.Series(gdf_nearest["distance"].diff(-1) * -1 , name="diff")
         ], axis=1)
-    print(gdf_time2)
  
+    # 駅間の
     l = []
     for i, row in gdf_time2.iterrows():
-        if row["diff"] > 0:
-           gdf_partTraj = gdf_traj[(gdf_traj["distance"] >= row["distance"]) & (gdf_traj["distance"] < row["distance"] + row["diff"])]
+        if row["diff"] == 0:
+           gdf_partTraj = gdf_traj[(gdf_traj["distance"] == row["distance"])]
+           gdf_partTraj["time"] = row["秒数"]
         else:
-           gdf_partTraj = gdf_traj[(gdf_traj["distance"] <= row["distance"]) & (gdf_traj["distance"] > row["distance"] + row["diff"])]
+            if row["diff"] > 0:
+                gdf_partTraj = gdf_traj[(gdf_traj["distance"] >= row["distance"]) & (gdf_traj["distance"] < row["distance"] + row["diff"])]
+            else:
+                gdf_partTraj = gdf_traj[(gdf_traj["distance"] <= row["distance"]) & (gdf_traj["distance"] > row["distance"] + row["diff"])]
 
-        gdf_partTraj["time"] = row["秒数"] + (gdf_partTraj["distance"] - row["distance"]) / row["speed"]
+            gdf_partTraj["time"] = row["秒数"] + (gdf_partTraj["distance"] - row["distance"]) / row["speed"]
         l.append(gdf_partTraj)
 
     gdf_txyz = pd.concat(l)
