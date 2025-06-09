@@ -1,0 +1,62 @@
+[
+    {
+        "name" : "はやぶさ（（上り）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_hayabusa_up_19781003.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
+        "name" : "はやぶさ（（下り）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_hayabusa_down_19781003.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
+        "name" : "さくら（上り）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_sakura_up_19820302.csv",
+        "trajectory_filename" : "trajectory_sakura.csv"
+    },
+    {
+        "name" : "さくら（下り）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_sakura_down_19820302.csv",
+        "trajectory_filename" : "trajectory_sakura.csv"
+    },
+    {
+        "name" : "さくら（上り：長崎）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_sakura-nagasaki_up_19820302.csv",
+        "trajectory_filename" : "trajectory_sakura-nagasaki.csv"
+    },
+    {
+        "name" : "さくら（下り：長崎）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_sakura-nagasaki_down_19820302.csv",
+        "trajectory_filename" : "trajectory_sakura-nagasaki.csv"
+    },
+    {
+        "name" : "さくら（上り：佐世保）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_sakura-sasebo_up_19820302.csv",
+        "trajectory_filename" : "trajectory_sakura-sasebo.csv"
+    },
+    {
+        "name" : "さくら（下り：佐世保）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_sakura-sasebo_down_19820302.csv",
+        "trajectory_filename" : "trajectory_sakura-sasebo.csv"
+    },
+    {
+        "name" : "富士（上り）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_fuji_up_19820302.csv",
+        "trajectory_filename" : "trajectory_fuji.csv"
+    },
+    {
+        "name" : "富士（下り）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_fuji_down_19820302.csv",
+        "trajectory_filename" : "trajectory_fuji.csv"
+    }
+]
