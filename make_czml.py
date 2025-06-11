@@ -8,73 +8,7 @@ from scipy.spatial import cKDTree
 def main():
     rootFolderath = os.path.dirname(__file__)
 
-    settings = json.load(open(os.path.join(rootFolderath,"settings.json")))
-    print(settings)
-    print(type(settings))
-
-    # settings = [
-    #     {
-    #         "name" : "はやぶさ（（上り）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_hayabusa_up_19781003.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_hayabusa.csv")
-    #     },
-    #     {
-    #         "name" : "はやぶさ（（下り）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_hayabusa_down_19781003.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_hayabusa.csv")
-    #     },
-    #     {
-    #         "name" : "さくら（上り）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura_up_19820302.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura.csv")
-    #     },
-    #     {
-    #         "name" : "さくら（下り）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura_down_19820302.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura.csv")
-    #     },
-    #     {
-    #         "name" : "さくら（上り：長崎）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura-nagasaki_up_19820302.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura-nagasaki.csv")
-    #     },
-    #     {
-    #         "name" : "さくら（下り：長崎）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura-nagasaki_down_19820302.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura-nagasaki.csv")
-    #     },
-    #     {
-    #         "name" : "さくら（上り：佐世保）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura-sasebo_up_19820302.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura-sasebo.csv")
-    #     },
-    #     {
-    #         "name" : "さくら（下り：佐世保）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_sakura-sasebo_down_19820302.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_sakura-sasebo.csv")
-    #     },
-    #     {
-    #         "name" : "富士（上り）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_fuji_up_19820302.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_fuji.csv")
-    #     },
-    #     {
-    #         "name" : "富士（下り）",
-    #         "stationList_path" : os.path.join(rootFolderath, r"stationlist",r"station_list2.csv"),
-    #         "timetablepath" : os.path.join(rootFolderath, r"timetable",r"time_fuji_down_19820302.csv"),
-    #         "trajectorypath" : os.path.join(rootFolderath, r"trajectory",r"trajectory_fuji.csv")
-    #     },
-    # ]
-
+    settings = json.load(open(os.path.join(rootFolderath,"settings.json"), encoding="utf-8"))
     for setting in settings:
         # 駅リスト（駅名、位置情報）のファイルパス
         # stationList_path = setting["stationList_path"]
@@ -88,11 +22,13 @@ def main():
         # trajectorypath = setting["trajectorypath"]
         trajectorypath = os.path.join(rootFolderath, r"trajectory",setting["trajectory_filename"])
         
+        czml_base = json.load(open(os.path.join(rootFolderath,"czml_base.json"), encoding="utf-8"))
 
         # CZMLファイルのパス
         outputFolderath = os.path.join(rootFolderath, r"czml")
 
-        standard_time = datetime.datetime(1978,10,2,00,00,00)
+        tzinfo=datetime.timezone.utc
+        standard_time = datetime.datetime(1978,10,2,00,00,00, tzinfo=tzinfo)
 
         df_time = pd.read_csv(timetablepath, encoding="utf8")
         df_traj = pd.read_csv(trajectorypath, encoding="shift_jis")
@@ -100,73 +36,33 @@ def main():
 
         filename = os.path.splitext(os.path.basename(timetablepath))[0]
 
-        makeCZML(df_time, df_traj, df_station, outputFolderath, standard_time, filename, filename, "")
+        makeCZML(df_time, df_traj, df_station, outputFolderath, standard_time, id=filename, name=filename, description="", czml_base=czml_base)
+    print("Complete !")
 
-def getCZMLData(id, name, description, txyz):
-    return [
-        {
-            "id": "document",
+
+def getCZMLData(id, name, description, txyz, standard_time, czml_base):
+    meta = {"id": "document",
             "name": "name",
-            "version": "1.0"
-        },
-        {
-            "id": id,
-            "name": name,
-            "description": description,
-            "availability": "1978-10-03T12:00:00Z/1978-10-04T12:00:00Z",
-            "model": {
-                "gltf": "Abstract_train.glb",
-                "scale": 10.0,
-                "minimumPixelSize": 0.1
-            },
-            "position": {
-                "epoch": "1978-10-03T00:00:00Z",
-                "cartographicDegrees": txyz
-            },
-            "billboard": {
-                "image": "imageURL.png",
-                "scale": 0.3
-            },
-            "point": {
-                "color": {
-                    "rgba": [255,255,255,255]
-                },
-                "pixelSize": 8
-            }
-        },
-        {
-            "id": id + "-2",
-            "name": name,
-            "description": description,
-            "availability": "1978-10-03T12:00:00Z/1978-10-04T12:00:00Z",
-            "model": {
-                "gltf": "Abstract_train.glb",
-                "scale": 10.0,
-                "minimumPixelSize": 0.1
-            },
-            "position": {
-                "epoch": "1978-10-02T00:00:00Z",
-                "cartographicDegrees": txyz
-            },
-            "billboard": {
-                "image": "imageURL.png",
-                "scale": 0.3
-            },
-            "point": {
-                "color": {
-                    "rgba": [255,255,255,255]
-                },
-                "pixelSize": 8
-            }
-        }
-    ]
+            "version": "1.0"}
+    result = [meta]
+    for i in range(2):
+        t = standard_time + datetime.timedelta(days=i)
+        b = czml_base
+        b["id"] = id
+        b["name"] = name
+        b["description"] = description
+        b["position"]["cartographicDegrees"] = txyz
+        b["position"]["epoch"] = t.isoformat()
+        result.append(b)
+    return result
 
 
-def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, id="", name="", description="" ):
+
+def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, czml_base, id="", name="", description=""):
     description = ""
 
     # standard timeからの秒数を計算
-    df_time["時刻"] = pd.to_datetime(df_time["時刻"])
+    df_time["時刻"] = pd.to_datetime(df_time["時刻"], utc=True)
     df_time["時刻"] = df_time["時刻"] - standard_time
     df_time["秒数"] = df_time["時刻"].dt.total_seconds()
 
@@ -192,16 +88,14 @@ def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, id="", nam
     # 駅間の
     l = []
     for i, row in gdf_time2.iterrows():
-        print("-------------")
         if row["diff"] == 0:
-           gdf_partTraj = gdf_traj[(gdf_traj["distance"] == row["distance"])]
-           gdf_partTraj["time"] = row["秒数"]
-        #    gdf_partTraj.loc[:,"time"] = row["秒数"]
+            gdf_partTraj = gdf_traj[(gdf_traj["distance"] == row["distance"])].copy()
+            gdf_partTraj["time"] = row["秒数"]
         else:
             if row["diff"] > 0:
-                gdf_partTraj = gdf_traj[(gdf_traj["distance"] >= row["distance"]) & (gdf_traj["distance"] < row["distance"] + row["diff"])]
+                gdf_partTraj = gdf_traj[(gdf_traj["distance"] >= row["distance"]) & (gdf_traj["distance"] < row["distance"] + row["diff"])].copy()
             else:
-                gdf_partTraj = gdf_traj[(gdf_traj["distance"] <= row["distance"]) & (gdf_traj["distance"] > row["distance"] + row["diff"])]
+                gdf_partTraj = gdf_traj[(gdf_traj["distance"] <= row["distance"]) & (gdf_traj["distance"] > row["distance"] + row["diff"])].copy()
 
             gdf_partTraj["time"] = row["秒数"] + (gdf_partTraj["distance"] - row["distance"]) / row["speed"]
             # gdf_partTraj.loc[:,"time"] = row["秒数"] + (gdf_partTraj["distance"] - row["distance"]) / row["speed"]
@@ -213,7 +107,6 @@ def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, id="", nam
 
 
     ## ===================================================
-    print("=============")
 
     # df_out = df_merge[["秒数", "X", "Y", "Z"]]
     df_out = gdf_txyz[["time", "X", "Y", "Z"]]
@@ -222,12 +115,11 @@ def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, id="", nam
     for set in df_out.values.tolist():
         txyz.extend(set)
 
-    base = getCZMLData(id, name, description, txyz)
+    base = getCZMLData(id, name, description, txyz, standard_time, czml_base=czml_base)
     outputFileath = os.path.join(outputFolderath, "{0}.czml".format(id))
 
     with open(outputFileath, 'w') as f:
         json.dump(base, f, indent=4)
-    print("Complete !")
 
 
 main()
