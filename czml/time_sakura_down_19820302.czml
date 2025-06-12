@@ -6,7 +6,7 @@
     },
     {
         "id": "time_sakura_down_19820302",
-        "name": "time_sakura_down_19820302",
+        "name": "\u3055\u304f\u3089\uff08\u4e0b\u308a\uff09",
         "description": "",
         "availability": "1978-10-03T12:00:00Z/1978-10-04T12:00:00Z",
         "model": {
@@ -15,7 +15,7 @@
             "minimumPixelSize": 0.1
         },
         "position": {
-            "epoch": "1978-10-03T00:00:00+00:00",
+            "epoch": "1978-10-03T00:00:00+09:00",
             "cartographicDegrees": [
                 57240.0,
                 139.76716,
@@ -64421,7 +64421,7 @@
     },
     {
         "id": "time_sakura_down_19820302",
-        "name": "time_sakura_down_19820302",
+        "name": "\u3055\u304f\u3089\uff08\u4e0b\u308a\uff09",
         "description": "",
         "availability": "1978-10-03T12:00:00Z/1978-10-04T12:00:00Z",
         "model": {
@@ -64430,7 +64430,7 @@
             "minimumPixelSize": 0.1
         },
         "position": {
-            "epoch": "1978-10-03T00:00:00+00:00",
+            "epoch": "1978-10-03T00:00:00+09:00",
             "cartographicDegrees": [
                 57240.0,
                 139.76716,

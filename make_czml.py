@@ -27,7 +27,8 @@ def main():
         # CZMLファイルのパス
         outputFolderath = os.path.join(rootFolderath, r"czml")
 
-        tzinfo=datetime.timezone.utc
+        # tzinfo = datetime.timezone.utc
+        tzinfo = datetime.timezone(datetime.timedelta(hours=9))
         standard_time = datetime.datetime(1978,10,2,00,00,00, tzinfo=tzinfo)
 
         df_time = pd.read_csv(timetablepath, encoding="utf8")
@@ -36,7 +37,7 @@ def main():
 
         filename = os.path.splitext(os.path.basename(timetablepath))[0]
 
-        makeCZML(df_time, df_traj, df_station, outputFolderath, standard_time, id=filename, name=filename, description="", czml_base=czml_base)
+        makeCZML(df_time, df_traj, df_station, outputFolderath, standard_time, id=filename, name=setting["name"], description="", czml_base=czml_base)
     print("Complete !")
 
 
@@ -62,9 +63,9 @@ def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, czml_base,
     description = ""
 
     # standard timeからの秒数を計算
-    df_time["時刻"] = pd.to_datetime(df_time["時刻"], utc=True)
-    df_time["時刻"] = df_time["時刻"] - standard_time
-    df_time["秒数"] = df_time["時刻"].dt.total_seconds()
+    df_time = df_time.set_index("時刻")
+    df_time.index = pd.to_datetime(df_time.index).tz_localize('Asia/Tokyo') - standard_time
+    df_time["秒数"] = df_time.index.total_seconds()
 
     df_merge = df_time.merge(df_st, left_on = "駅名", right_on = "旧駅名", how = "left")
 
