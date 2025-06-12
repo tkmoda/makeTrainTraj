@@ -37,11 +37,27 @@ def main():
 
         filename = os.path.splitext(os.path.basename(timetablepath))[0]
 
-        makeCZML(df_time, df_traj, df_station, outputFolderath, standard_time, id=filename, name=setting["name"], description="", czml_base=czml_base)
+        txyz = makeCZML(df_time, df_traj, df_station, standard_time)
+
+        base = getCZMLData(filename, setting["name"], "", txyz, standard_time, czml_base)
+        outputFileath = os.path.join(outputFolderath, "{0}.czml".format(filename))
+
+        with open(outputFileath, 'w') as f:
+            json.dump(base, f, indent=4)
+
     print("Complete !")
 
 
 def getCZMLData(id, name, description, txyz, standard_time, czml_base):
+    """CZMLファイルの内容を生成する。
+    param id: xxxx
+    type id: string
+
+    
+    returns: CAMLファイルの内容
+    rtype: list
+
+    """
     meta = {"id": "document",
             "name": "name",
             "version": "1.0"}
@@ -59,8 +75,8 @@ def getCZMLData(id, name, description, txyz, standard_time, czml_base):
 
 
 
-def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, czml_base, id="", name="", description=""):
-    description = ""
+# def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, czml_base, id="", name="", description=""):
+def makeCZML(df_time, df_traj, df_st, standard_time):
 
     # standard timeからの秒数を計算
     df_time = df_time.set_index("時刻")
@@ -116,11 +132,13 @@ def makeCZML(df_time, df_traj, df_st, outputFolderath, standard_time, czml_base,
     for set in df_out.values.tolist():
         txyz.extend(set)
 
-    base = getCZMLData(id, name, description, txyz, standard_time, czml_base=czml_base)
-    outputFileath = os.path.join(outputFolderath, "{0}.czml".format(id))
+    return txyz
 
-    with open(outputFileath, 'w') as f:
-        json.dump(base, f, indent=4)
+    # base = getCZMLData(id, name, description, txyz, standard_time, czml_base=czml_base)
+    # outputFileath = os.path.join(outputFolderath, "{0}.czml".format(id))
+
+    # with open(outputFileath, 'w') as f:
+    #     json.dump(base, f, indent=4)
 
 
 main()
