@@ -1,5 +1,29 @@
 [
     {
+        "name" : "みずほ（下り）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_asakaze1_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
+        "name" : "みずほ（下り）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_mizuho_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
+        "name" : "みずほ（下り：長崎）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_mizuho-nagasaki_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_tosu-nagasaki.csv"
+    },
+    {
+        "name" : "みずほ（下り：熊本）",
+        "stationList_filename" : "station_list2.csv",
+        "timetable_filename" : "time_mizuho-kumamoto_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
         "name" : "はやぶさ（（上り）",
         "stationList_filename" : "station_list2.csv",
         "timetable_filename" : "time_hayabusa_up_19781003.csv",
