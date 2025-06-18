@@ -9,3 +9,9 @@ trajectory_fuji             東京～宮崎～西鹿児島
 trajectory_izumo            東京～～浜田
 trajectory_seto             東京～～宇野
 trajectory_kii              名古屋～紀伊勝浦
+
+trajectory_nihonkai         大阪～湖西線～敦賀～新津～青森
+trajectory_hakuturu         上野～福島～仙台～青森
+trajectory_akebono          上野～福島～秋田～青森
+trajectory_yuuduru          上野～水戸～仙台～青森
+trajectory_hokuriku         上野～長岡～金沢
