@@ -2,12 +2,6 @@
     {
         "name" : "みずほ（下り）",
         "stationList_filename" : "station_list2.csv",
-        "timetable_filename" : "time_asakaze1_down_1980spring.csv",
-        "trajectory_filename" : "trajectory_hayabusa.csv"
-    },
-    {
-        "name" : "みずほ（下り）",
-        "stationList_filename" : "station_list2.csv",
         "timetable_filename" : "time_mizuho_down_1980spring.csv",
         "trajectory_filename" : "trajectory_hayabusa.csv"
     },

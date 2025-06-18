@@ -1,0 +1,11 @@
+作成済み
+
+trajectory_hayabusa         東京～熊本～西鹿児島
+trajectory_sakura           東京～肥前山口
+trajectory_sakura-sasebo    肥前山口～佐世保
+trajectory_sakura-nagasaki  肥前山口～長崎
+trajectory_tosu-nagasaki    鳥栖～長崎
+trajectory_fuji             東京～宮崎～西鹿児島
+trajectory_izumo            東京～～浜田
+trajectory_seto             東京～～宇野
+trajectory_kii              名古屋～紀伊勝浦

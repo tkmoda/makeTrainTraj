@@ -2,7 +2,7 @@
     "id": "id",
     "name": "name",
     "description": "description",
-    "availability": "1978-10-03T12:00:00+09:00/1978-10-04T12:00:00+09:00",
+    "availability": "1978-10-03T03:00:00Z/1978-10-04T03:00:00Z",
     "model": {
         "gltf": "Abstract_train.glb",
         "scale": 10.0,
