@@ -5,7 +5,7 @@
         "version": "1.0"
     },
     {
-        "id": "time_ginga51_down_1980spring",
+        "id": "time_ginga51_down_1980spring0",
         "name": "\u9280\u6cb3\uff15\uff11\u53f7",
         "description": "",
         "availability": "1978-10-03T03:00:00Z/1978-10-04T03:00:00Z",
@@ -15,7 +15,7 @@
             "minimumPixelSize": 0.1
         },
         "position": {
-            "epoch": "1978-10-03T00:00:00+09:00",
+            "epoch": "1978-10-02T00:00:00+09:00",
             "cartographicDegrees": [
                 77640.0,
                 139.76716,
@@ -26436,7 +26436,7 @@
         }
     },
     {
-        "id": "time_ginga51_down_1980spring",
+        "id": "time_ginga51_down_1980spring1",
         "name": "\u9280\u6cb3\uff15\uff11\u53f7",
         "description": "",
         "availability": "1978-10-03T03:00:00Z/1978-10-04T03:00:00Z",

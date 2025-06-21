@@ -5,7 +5,7 @@
         "version": "1.0"
     },
     {
-        "id": "time_mizuho_down_1980spring",
+        "id": "time_mizuho_down_1980spring0",
         "name": "\u307f\u305a\u307b\uff08\u4e0b\u308a\uff09",
         "description": "",
         "availability": "1978-10-03T03:00:00Z/1978-10-04T03:00:00Z",
@@ -15,7 +15,7 @@
             "minimumPixelSize": 0.1
         },
         "position": {
-            "epoch": "1978-10-03T00:00:00+09:00",
+            "epoch": "1978-10-02T00:00:00+09:00",
             "cartographicDegrees": [
                 59580.0,
                 139.76716,
@@ -62656,7 +62656,7 @@
         }
     },
     {
-        "id": "time_mizuho_down_1980spring",
+        "id": "time_mizuho_down_1980spring1",
         "name": "\u307f\u305a\u307b\uff08\u4e0b\u308a\uff09",
         "description": "",
         "availability": "1978-10-03T03:00:00Z/1978-10-04T03:00:00Z",

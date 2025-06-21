@@ -5,7 +5,7 @@
         "version": "1.0"
     },
     {
-        "id": "time_sakura-nagasaki_up_19820302",
+        "id": "time_sakura-nagasaki_up_198203020",
         "name": "\u3055\u304f\u3089\uff08\u4e0a\u308a\uff1a\u9577\u5d0e\uff09",
         "description": "",
         "availability": "1978-10-03T03:00:00Z/1978-10-04T03:00:00Z",
@@ -15,7 +15,7 @@
             "minimumPixelSize": 0.1
         },
         "position": {
-            "epoch": "1978-10-03T00:00:00+09:00",
+            "epoch": "1978-10-02T00:00:00+09:00",
             "cartographicDegrees": [
                 58320.0,
                 129.86928,
@@ -5136,7 +5136,7 @@
         }
     },
     {
-        "id": "time_sakura-nagasaki_up_19820302",
+        "id": "time_sakura-nagasaki_up_198203021",
         "name": "\u3055\u304f\u3089\uff08\u4e0a\u308a\uff1a\u9577\u5d0e\uff09",
         "description": "",
         "availability": "1978-10-03T03:00:00Z/1978-10-04T03:00:00Z",

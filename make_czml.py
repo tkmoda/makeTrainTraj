@@ -3,7 +3,7 @@ import pandas as pd
 import datetime
 import geopandas as gpd
 from scipy.spatial import cKDTree
-
+import copy
 
 def main():
     rootFolderath = os.path.dirname(__file__)
@@ -65,12 +65,13 @@ def getCZMLData(id, name, description, txyz, standard_time, czml_base):
     result = [meta]
     for i in range(2):
         t = standard_time + datetime.timedelta(days=i)
-        b = czml_base
-        b["id"] = id
+        b = copy.deepcopy(czml_base)
+        b["id"] = id & str(i)
         b["name"] = name
         b["description"] = description
         b["position"]["cartographicDegrees"] = txyz
         b["position"]["epoch"] = t.isoformat()
+        # print(b["position"]["epoch"])
         result.append(b)
     return result
 
