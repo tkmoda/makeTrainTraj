@@ -10,6 +10,7 @@ def main():
 
     settings = json.load(open(os.path.join(rootFolderath,"settings.json"), encoding="utf-8"))
     for setting in settings:
+        print("{0}の処理を開始します。".format(setting["name"]))
         # 駅リスト（駅名、位置情報）のファイルパス
         # stationList_path = setting["stationList_path"]
         stationList_path = os.path.join(rootFolderath, r"stationlist",setting["stationList_filename"])

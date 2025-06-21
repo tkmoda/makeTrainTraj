@@ -1,79 +1,115 @@
 [
     {
+        "name" : "あさかぜ１号",
+        "stationList_filename" : "station_list_yako.csv",
+        "timetable_filename" : "time_asakaze1_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
+        "name" : "あさかぜ３号",
+        "stationList_filename" : "station_list_yako.csv",
+        "timetable_filename" : "time_asakaze3_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
+        "name" : "あさかぜ５１号",
+        "stationList_filename" : "station_list_yako.csv",
+        "timetable_filename" : "time_asakaze51_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
+        "name" : "銀河",
+        "stationList_filename" : "station_list_yako.csv",
+        "timetable_filename" : "time_ginga_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
+        "name" : "銀河５１号",
+        "stationList_filename" : "station_list_yako.csv",
+        "timetable_filename" : "time_ginga51_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
+        "name" : "銀河５３号",
+        "stationList_filename" : "station_list_yako.csv",
+        "timetable_filename" : "time_ginga53_down_1980spring.csv",
+        "trajectory_filename" : "trajectory_hayabusa.csv"
+    },
+    {
         "name" : "みずほ（下り）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_mizuho_down_1980spring.csv",
         "trajectory_filename" : "trajectory_hayabusa.csv"
     },
     {
         "name" : "みずほ（下り：長崎）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_mizuho-nagasaki_down_1980spring.csv",
         "trajectory_filename" : "trajectory_tosu-nagasaki.csv"
     },
     {
         "name" : "みずほ（下り：熊本）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_mizuho-kumamoto_down_1980spring.csv",
         "trajectory_filename" : "trajectory_hayabusa.csv"
     },
     {
         "name" : "はやぶさ（（上り）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_hayabusa_up_19781003.csv",
         "trajectory_filename" : "trajectory_hayabusa.csv"
     },
     {
         "name" : "はやぶさ（（下り）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_hayabusa_down_19781003.csv",
         "trajectory_filename" : "trajectory_hayabusa.csv"
     },
     {
         "name" : "さくら（上り）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_sakura_up_19820302.csv",
         "trajectory_filename" : "trajectory_sakura.csv"
     },
     {
         "name" : "さくら（下り）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_sakura_down_19820302.csv",
         "trajectory_filename" : "trajectory_sakura.csv"
     },
     {
         "name" : "さくら（上り：長崎）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_sakura-nagasaki_up_19820302.csv",
         "trajectory_filename" : "trajectory_sakura-nagasaki.csv"
     },
     {
         "name" : "さくら（下り：長崎）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_sakura-nagasaki_down_19820302.csv",
         "trajectory_filename" : "trajectory_sakura-nagasaki.csv"
     },
     {
         "name" : "さくら（上り：佐世保）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_sakura-sasebo_up_19820302.csv",
         "trajectory_filename" : "trajectory_sakura-sasebo.csv"
     },
     {
         "name" : "さくら（下り：佐世保）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_sakura-sasebo_down_19820302.csv",
         "trajectory_filename" : "trajectory_sakura-sasebo.csv"
     },
     {
         "name" : "富士（上り）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_fuji_up_19820302.csv",
         "trajectory_filename" : "trajectory_fuji.csv"
     },
     {
         "name" : "富士（下り）",
-        "stationList_filename" : "station_list2.csv",
+        "stationList_filename" : "station_list_yako.csv",
         "timetable_filename" : "time_fuji_down_19820302.csv",
         "trajectory_filename" : "trajectory_fuji.csv"
     }
