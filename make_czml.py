@@ -13,8 +13,13 @@ def main():
         print("{0}の処理を開始します。".format(train["name"]))
         ## ==============初期設定==============
         # 駅リスト（駅名、位置情報）の読み込み
-        stationList_path = os.path.join(rootFolderath, r"stationlist",train["stationList_filename"])
-        df_station = pd.read_csv(stationList_path)
+        # stationList_path = os.path.join(rootFolderath, r"stationlist",train["stationList_filename"])
+        # df_station = pd.read_csv(stationList_path)
+
+        geodata_path = os.path.join(rootFolderath, train["geodata_filename"])
+        df_station = gpd.read_file(geodata_path, layer = train["station_layername"])
+        df_station = df_station[df_station["夜行列車停車駅"]==True]
+
 
         # 時刻表情報の読み込み
         timetablepath = os.path.join(rootFolderath, r"timetable",train["timetable_filename"])
@@ -98,8 +103,7 @@ def getTXYZData(df_time, df_traj, df_st, standard_time):
     df_time = df_time.set_index("時刻")
     df_time.index = pd.to_datetime(df_time.index).tz_localize('Asia/Tokyo') - standard_time
     df_time["秒数"] = df_time.index.total_seconds()
-    df_merge = df_time.merge(df_st, left_on = "駅名", right_on = "旧駅名", how = "left")
-    gdf_time = gpd.GeoDataFrame(df_merge, geometry=gpd.points_from_xy(df_merge.X, df_merge.Y, df_merge.Z), crs="EPSG:6668")
+    gdf_time = df_time.merge(df_st, left_on = "駅名", right_on = "旧駅名", how = "left")
 
     # 列車の運行軌跡を読み込み、位置情報を取得する
     gdf_traj = gpd.GeoDataFrame(df_traj, geometry=gpd.points_from_xy(df_traj.X, df_traj.Y, df_traj.Z), crs="EPSG:6668")
