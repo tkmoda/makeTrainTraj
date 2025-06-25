@@ -17,8 +17,8 @@ def main():
         # df_station = pd.read_csv(stationList_path)
 
         geodata_path = os.path.join(rootFolderath, train["geodata_filename"])
-        df_station = gpd.read_file(geodata_path, layer = train["station_layername"])
-        df_station = df_station[df_station["夜行列車停車駅"]==True]
+        gdf_station = gpd.read_file(geodata_path, layer = train["station_layername"])
+        gdf_station = gdf_station[gdf_station["夜行列車停車駅"]==True]
 
 
         # 時刻表情報の読み込み
@@ -26,9 +26,19 @@ def main():
         df_time = pd.read_csv(timetablepath, encoding="utf8")
         
         # 列車の軌跡情報の読み込み
-        trajectorypath = os.path.join(rootFolderath, r"trajectory",train["trajectory_filename"])
-        df_traj = pd.read_csv(trajectorypath, encoding="shift_jis")
-        
+        # trajectorypath = os.path.join(rootFolderath, r"trajectory",train["trajectory_filename"])
+        # df_traj = pd.read_csv(trajectorypath, encoding="shift_jis")
+
+        df_trajlist = gpd.read_file(geodata_path, layer = train["trajectory_layername"])
+        geoms = df_trajlist[df_trajlist["name"]==train["trajectory_name"]].iloc[0].geometry.geoms[0]
+        print(geoms)
+        print(type(geoms))
+        print(geoms.coords[0])
+        # if len(geoms) == 1:
+        #     pass
+        # else:
+        #     pass
+
         # ベースとするCZMLファイルの内容
         czml_base = json.load(open(os.path.join(rootFolderath,"czml_base.json"), encoding="utf-8"))
 
@@ -43,7 +53,7 @@ def main():
         train_id = os.path.splitext(os.path.basename(timetablepath))[0]
 
         # 列車の移動情報を作成
-        txyz = getTXYZData(df_time, df_traj, df_station, standard_time)
+        txyz = getTXYZData(df_time, df_traj, gdf_station, standard_time)
 
         # CZMLデータの内容を作成
         base = getCZMLData(train_id, train["name"], "", txyz, standard_time, czml_base)
@@ -86,7 +96,7 @@ def getCZMLData(id, name, description, txyz, standard_time, czml_base):
     return result
 
 
-def getTXYZData(df_time, df_traj, df_st, standard_time):
+def getTXYZData(df_time, df_traj, gdf_st, standard_time):
     """列車の時刻、X、Y、Z情報のリストを作成する。
 
     Args:
@@ -103,7 +113,7 @@ def getTXYZData(df_time, df_traj, df_st, standard_time):
     df_time = df_time.set_index("時刻")
     df_time.index = pd.to_datetime(df_time.index).tz_localize('Asia/Tokyo') - standard_time
     df_time["秒数"] = df_time.index.total_seconds()
-    gdf_time = df_time.merge(df_st, left_on = "駅名", right_on = "旧駅名", how = "left")
+    gdf_time = df_time.merge(gdf_st, left_on = "駅名", right_on = "旧駅名", how = "left")
 
     # 列車の運行軌跡を読み込み、位置情報を取得する
     gdf_traj = gpd.GeoDataFrame(df_traj, geometry=gpd.points_from_xy(df_traj.X, df_traj.Y, df_traj.Z), crs="EPSG:6668")
