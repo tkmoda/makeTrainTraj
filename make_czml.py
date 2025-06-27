@@ -30,10 +30,29 @@ def main():
         # df_traj = pd.read_csv(trajectorypath, encoding="shift_jis")
 
         df_trajlist = gpd.read_file(geodata_path, layer = train["trajectory_layername"])
-        geoms = df_trajlist[df_trajlist["name"]==train["trajectory_name"]].iloc[0].geometry.geoms[0]
-        print(geoms)
-        print(type(geoms))
-        print(geoms.coords[0])
+        g = df_trajlist[df_trajlist["name"]==train["trajectory_name"]]
+        if len(g) != 1:
+            print("  --ERROR: trajectory_nameがないか、同じ軌跡が複数あります。")
+            continue
+        if len(g.iloc[0].geometry.geoms) != 1:
+            print("  --ERROR: １つのジオメトリにポリゴンが複数あります。１つだけにしてください。")
+            continue
+
+        p = g.iloc[0].geometry.geoms[0].coords
+        # gdf_traj = gpd.GeoDataFrame({"geometry": gpd.points_from_xy([x for x, y, z in p], [y for x, y, z in p], [z for x, y, z in p])}, geometry="geometry", crs=df_trajlist.crs)
+        X, Y, Z = [x for x, y, z in p], [y for x, y, z in p], [z for x, y, z in p]
+        gdf_traj = gpd.GeoDataFrame({"X" : X, "Y" : Y, "Z" : Z}, geometry=gpd.points_from_xy(X, Y, Z), crs=df_trajlist.crs)
+        distance, n, pre_p = 0, 0, (0, 0, 0)
+        for index, row in gdf_traj.iterrows():
+            if n == 0:
+                gdf_traj.at[index, "distance"] = distance
+            else:
+                distance += pre_p.distance(row["geometry"]) * 1000
+                gdf_traj.at[index, "distance"] = distance
+            n += 1
+            pre_p = row["geometry"]
+
+        # print(gdf_traj)
         # if len(geoms) == 1:
         #     pass
         # else:
@@ -53,7 +72,7 @@ def main():
         train_id = os.path.splitext(os.path.basename(timetablepath))[0]
 
         # 列車の移動情報を作成
-        txyz = getTXYZData(df_time, df_traj, gdf_station, standard_time)
+        txyz = getTXYZData(df_time, gdf_traj, gdf_station, standard_time)
 
         # CZMLデータの内容を作成
         base = getCZMLData(train_id, train["name"], "", txyz, standard_time, czml_base)
@@ -96,7 +115,7 @@ def getCZMLData(id, name, description, txyz, standard_time, czml_base):
     return result
 
 
-def getTXYZData(df_time, df_traj, gdf_st, standard_time):
+def getTXYZData(df_time, gdf_traj, gdf_st, standard_time):
     """列車の時刻、X、Y、Z情報のリストを作成する。
 
     Args:
@@ -116,7 +135,7 @@ def getTXYZData(df_time, df_traj, gdf_st, standard_time):
     gdf_time = df_time.merge(gdf_st, left_on = "駅名", right_on = "旧駅名", how = "left")
 
     # 列車の運行軌跡を読み込み、位置情報を取得する
-    gdf_traj = gpd.GeoDataFrame(df_traj, geometry=gpd.points_from_xy(df_traj.X, df_traj.Y, df_traj.Z), crs="EPSG:6668")
+    # gdf_traj = gpd.GeoDataFrame(df_traj, geometry=gpd.points_from_xy(df_traj.X, df_traj.Y, df_traj.Z), crs="EPSG:6668")
 
     # 時刻表の各駅に最も近い運行軌跡のノードを探索する
     n_time = numpy.array(list(gdf_time.geometry.apply(lambda x: (x.x, x.y))))
