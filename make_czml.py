@@ -12,23 +12,18 @@ def main():
     for train in trains:
         print("{0}の処理を開始します。".format(train["name"]))
         ## ==============初期設定==============
-        # 駅リスト（駅名、位置情報）の読み込み
-        # stationList_path = os.path.join(rootFolderath, r"stationlist",train["stationList_filename"])
-        # df_station = pd.read_csv(stationList_path)
-
+        # GISデータの読み込み
         geodata_path = os.path.join(rootFolderath, train["geodata_filename"])
+
+        # 駅リスト（駅名、位置情報）の読み込み
         gdf_station = gpd.read_file(geodata_path, layer = train["station_layername"])
         gdf_station = gdf_station[gdf_station["夜行列車停車駅"]==True]
-
 
         # 時刻表情報の読み込み
         timetablepath = os.path.join(rootFolderath, r"timetable",train["timetable_filename"])
         df_time = pd.read_csv(timetablepath, encoding="utf8")
         
         # 列車の軌跡情報の読み込み
-        # trajectorypath = os.path.join(rootFolderath, r"trajectory",train["trajectory_filename"])
-        # df_traj = pd.read_csv(trajectorypath, encoding="shift_jis")
-
         df_trajlist = gpd.read_file(geodata_path, layer = train["trajectory_layername"])
         g = df_trajlist[df_trajlist["name"]==train["trajectory_name"]]
         if len(g) != 1:
@@ -38,8 +33,8 @@ def main():
             print("  --ERROR: １つのジオメトリにポリゴンが複数あります。１つだけにしてください。")
             continue
 
+        # 軌跡をラインからポイントに変換し、距離を追加
         p = g.iloc[0].geometry.geoms[0].coords
-        # gdf_traj = gpd.GeoDataFrame({"geometry": gpd.points_from_xy([x for x, y, z in p], [y for x, y, z in p], [z for x, y, z in p])}, geometry="geometry", crs=df_trajlist.crs)
         X, Y, Z = [x for x, y, z in p], [y for x, y, z in p], [z for x, y, z in p]
         gdf_traj = gpd.GeoDataFrame({"X" : X, "Y" : Y, "Z" : Z}, geometry=gpd.points_from_xy(X, Y, Z), crs=df_trajlist.crs)
         distance, n, pre_p = 0, 0, (0, 0, 0)
@@ -51,12 +46,6 @@ def main():
                 gdf_traj.at[index, "distance"] = distance
             n += 1
             pre_p = row["geometry"]
-
-        # print(gdf_traj)
-        # if len(geoms) == 1:
-        #     pass
-        # else:
-        #     pass
 
         # ベースとするCZMLファイルの内容
         czml_base = json.load(open(os.path.join(rootFolderath,"czml_base.json"), encoding="utf-8"))
@@ -71,6 +60,7 @@ def main():
         # 列車IDの設定
         train_id = os.path.splitext(os.path.basename(timetablepath))[0]
 
+        ## ==============CZMLデータ作成処理==============
         # 列車の移動情報を作成
         txyz = getTXYZData(df_time, gdf_traj, gdf_station, standard_time)
 
