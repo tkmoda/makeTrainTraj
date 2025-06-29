@@ -8,12 +8,28 @@
         "timetable_filename" : "time_asakaze1_down_1980spring.csv"
     },
     {
+        "name" : "あさかぜ２号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_asakaze2_up_1980spring.csv"
+    },
+    {
         "name" : "あさかぜ３号",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
         "trajectory_name" : "hayabusa",
         "timetable_filename" : "time_asakaze3_down_1980spring.csv"
+    },
+    {
+        "name" : "あさかぜ４号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_asakaze4_up_1980spring.csv"
     },
     {
         "name" : "あさかぜ５１号",
@@ -24,6 +40,14 @@
         "timetable_filename" : "time_asakaze51_down_1980spring.csv"
     },
     {
+        "name" : "あさかぜ５２号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_asakaze52_up_1980spring.csv"
+    },
+    {
         "name" : "銀河",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
@@ -32,12 +56,28 @@
         "timetable_filename" : "time_ginga_down_1980spring.csv"
     },
     {
+        "name" : "銀河",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_ginga_up_1980spring.csv"
+    },
+    {
         "name" : "銀河５１号",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
         "trajectory_name" : "hayabusa",
         "timetable_filename" : "time_ginga51_down_1980spring.csv"
+    },
+    {
+        "name" : "銀河５２号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_ginga52_up_1980spring.csv"
     },
     {
         "name" : "銀河５３号",
@@ -70,6 +110,30 @@
         "trajectory_layername" : "trajectory",
         "trajectory_name" : "hayabusa",
         "timetable_filename" : "time_mizuho-kumamoto_down_1980spring.csv"
+    },
+    {
+        "name" : "みずほ（上り）",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_mizuho_up_1980spring.csv"
+    },
+    {
+        "name" : "みずほ（上り：長崎）",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "tosu-nagasaki",
+        "timetable_filename" : "time_mizuho-nagasaki_up_1980spring.csv"
+    },
+    {
+        "name" : "みずほ（上り：熊本）",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_mizuho-kumamoto_up_1980spring.csv"
     },
     {
         "name" : "はやぶさ（（上り）",
