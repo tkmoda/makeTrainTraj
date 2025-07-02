@@ -2,7 +2,7 @@
     "id": "id",
     "name": "name",
     "description": "description",
-    "availability": "1978-10-03T03:00:00Z/1978-10-04T03:00:00Z",
+    "availability": "1978-10-03T03:00:00+09:00/1978-10-04T03:00:00+09:00",
     "model": {
         "gltf": "Abstract_train.glb",
         "scale": 10.0,
@@ -11,10 +11,6 @@
     "position": {
         "epoch": "1978-10-03T00:00:00+09:00",
         "cartographicDegrees": "txyz"
-    },
-    "billboard": {
-        "image": "imageURL.png",
-        "scale": 0.3
     },
     "point": {
         "color": {

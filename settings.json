@@ -136,7 +136,7 @@
         "timetable_filename" : "time_mizuho-kumamoto_up_1980spring.csv"
     },
     {
-        "name" : "はやぶさ（（上り）",
+        "name" : "はやぶさ（上り）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -144,7 +144,7 @@
         "timetable_filename" : "time_hayabusa_up_19781003.csv"
     },
     {
-        "name" : "はやぶさ（（下り）",
+        "name" : "はやぶさ（下り）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",

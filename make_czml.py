@@ -55,17 +55,20 @@ def main():
 
         # タイムゾーン設定
         tzinfo = datetime.timezone(datetime.timedelta(hours=9))
-        standard_time = datetime.datetime(1978,10,2,00,00,00, tzinfo=tzinfo)
+        standard_time = datetime.datetime(1980,4,1,12,00,00, tzinfo=tzinfo)
 
         # 列車IDの設定
         train_id = os.path.splitext(os.path.basename(timetablepath))[0]
 
         ## ==============CZMLデータ作成処理==============
         # 列車の移動情報を作成
-        txyz = getTXYZData(df_time, gdf_traj, gdf_station, standard_time)
+        txyz, start_time, end_time = getTXYZData(df_time, gdf_traj, gdf_station, standard_time)
+        
+        if txyz is None:
+            continue
 
         # CZMLデータの内容を作成
-        base = getCZMLData(train_id, train["name"], "", txyz, standard_time, czml_base)
+        base = getCZMLData(train_id, train["name"], "", txyz, standard_time, end_time, czml_base)
         outputFileath = os.path.join(outputFolderath, "{0}.czml".format(train_id))
 
         # CZMLファイルの作成
@@ -75,7 +78,7 @@ def main():
     print("Complete !")
 
 
-def getCZMLData(id, name, description, txyz, standard_time, czml_base):
+def getCZMLData(id, name, description, txyz, standard_time, end_time, czml_base):
     """CZMLデータを生成する。
 
     Args:
@@ -93,12 +96,15 @@ def getCZMLData(id, name, description, txyz, standard_time, czml_base):
             "name": "name",
             "version": "1.0"}
     result = [meta]
-    for i in range(2):
-        t = standard_time + datetime.timedelta(days=i)
+
+    end_time.days
+    for i in range(end_time.days + 1):
+        t = standard_time - datetime.timedelta(days=i)
         b = copy.deepcopy(czml_base)
         b["id"] = id + str(i)
         b["name"] = name
         b["description"] = description
+        b["availability"] = "{0}/{1}".format(standard_time.isoformat(), (standard_time + datetime.timedelta(days=1)).isoformat())
         b["position"]["cartographicDegrees"] = txyz
         b["position"]["epoch"] = t.isoformat()
         result.append(b)
@@ -116,16 +122,24 @@ def getTXYZData(df_time, gdf_traj, gdf_st, standard_time):
 
     Returns:
         list: 列車の時刻、X、Y、Z情報のリスト
+        timedelta: 列車の出発時刻
+        timedelta: 列車の終着時刻
     """
 
     # 列車の時刻表を読み込み、standard timeからの秒数、位置情報を取得する
     df_time = df_time.set_index("時刻")
-    df_time.index = pd.to_datetime(df_time.index).tz_localize('Asia/Tokyo') - standard_time
+    diff_day = min((pd.to_datetime(df_time.index).tz_localize('Asia/Tokyo') - standard_time).days)
+    df_time.index = pd.to_datetime(df_time.index).tz_localize('Asia/Tokyo') - standard_time - datetime.timedelta(days=diff_day)
+    start_time, end_time = min(df_time.index), max(df_time.index)
+
     df_time["秒数"] = df_time.index.total_seconds()
     gdf_time = df_time.merge(gdf_st, left_on = "駅名", right_on = "旧駅名", how = "left")
 
-    # 列車の運行軌跡を読み込み、位置情報を取得する
-    # gdf_traj = gpd.GeoDataFrame(df_traj, geometry=gpd.points_from_xy(df_traj.X, df_traj.Y, df_traj.Z), crs="EPSG:6668")
+    # 駅一覧にない駅名が時刻表にないか検査
+    if len(gdf_time[gdf_time["geometry"]==None]) > 0:
+        print("　　---次の駅名が駅一覧に見つかりませんでした。処理をスキップします。{0}".format(str(list(gdf_time[gdf_time["geometry"]==None]["駅名"]))))
+        return None, None, None
+
 
     # 時刻表の各駅に最も近い運行軌跡のノードを探索する
     n_time = numpy.array(list(gdf_time.geometry.apply(lambda x: (x.x, x.y))))
@@ -167,6 +181,7 @@ def getTXYZData(df_time, gdf_traj, gdf_st, standard_time):
     for set in df_out.values.tolist():
         txyz.extend(set)
 
-    return txyz
+    return txyz, start_time, end_time
+
 
 main()
