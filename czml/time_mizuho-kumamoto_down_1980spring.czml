@@ -6,7 +6,7 @@
     },
     {
         "id": "time_mizuho-kumamoto_down_1980spring0",
-        "name": "\u307f\u305a\u307b\uff08\u4e0b\u308a\uff1a\u718a\u672c\uff09",
+        "name": "\u307f\u305a\u307b\uff08\u718a\u672c\uff09",
         "description": "",
         "availability": "1980-04-01T12:00:00+09:00/1980-04-02T12:00:00+09:00",
         "model": {
@@ -3657,7 +3657,7 @@
     },
     {
         "id": "time_mizuho-kumamoto_down_1980spring1",
-        "name": "\u307f\u305a\u307b\uff08\u4e0b\u308a\uff1a\u718a\u672c\uff09",
+        "name": "\u307f\u305a\u307b\uff08\u718a\u672c\uff09",
         "description": "",
         "availability": "1980-04-01T12:00:00+09:00/1980-04-02T12:00:00+09:00",
         "model": {

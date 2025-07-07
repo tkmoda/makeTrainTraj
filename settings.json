@@ -1,5 +1,85 @@
 [
     {
+        "name" : "出雲１号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "izumo",
+        "timetable_filename" : "time_izumo1_down_1980spring.csv"
+    },
+    {
+        "name" : "出雲２号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "izumo",
+        "timetable_filename" : "time_izumo2_up_1980spring.csv"
+    },
+    {
+        "name" : "出雲２号・紀伊",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "izumo",
+        "timetable_filename" : "time_izumo2kii_up_1980spring.csv"
+    },
+    {
+        "name" : "出雲３号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "izumo",
+        "timetable_filename" : "time_izumo3_down_1980spring.csv"
+    },
+    {
+        "name" : "出雲３号・紀伊",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "izumo",
+        "timetable_filename" : "time_izumo3kii_down_1980spring.csv"
+    },
+    {
+        "name" : "出雲４号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "izumo",
+        "timetable_filename" : "time_izumo4_up_1980spring.csv"
+    },
+    {
+        "name" : "紀伊",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "kii",
+        "timetable_filename" : "time_kii_down_1980spring.csv"
+    },
+    {
+        "name" : "紀伊",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "kii",
+        "timetable_filename" : "time_kii_up_1980spring.csv"
+    },
+    {
+        "name" : "瀬戸",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "seto",
+        "timetable_filename" : "time_seto_down_1980spring.csv"
+    },
+    {
+        "name" : "瀬戸",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "seto",
+        "timetable_filename" : "time_seto_up_1980spring.csv"
+    },
+    {
         "name" : "あさかぜ１号",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
@@ -88,7 +168,7 @@
         "timetable_filename" : "time_ginga53_down_1980spring.csv"
     },
     {
-        "name" : "みずほ（下り）",
+        "name" : "みずほ",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -96,7 +176,7 @@
         "timetable_filename" : "time_mizuho_down_1980spring.csv"
     },
     {
-        "name" : "みずほ（下り：長崎）",
+        "name" : "みずほ（長崎）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -104,7 +184,7 @@
         "timetable_filename" : "time_mizuho-nagasaki_down_1980spring.csv"
     },
     {
-        "name" : "みずほ（下り：熊本）",
+        "name" : "みずほ（熊本）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -112,7 +192,7 @@
         "timetable_filename" : "time_mizuho-kumamoto_down_1980spring.csv"
     },
     {
-        "name" : "みずほ（上り）",
+        "name" : "みずほ",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -120,7 +200,7 @@
         "timetable_filename" : "time_mizuho_up_1980spring.csv"
     },
     {
-        "name" : "みずほ（上り：長崎）",
+        "name" : "みずほ（長崎）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -128,7 +208,7 @@
         "timetable_filename" : "time_mizuho-nagasaki_up_1980spring.csv"
     },
     {
-        "name" : "みずほ（上り：熊本）",
+        "name" : "みずほ（熊本）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -136,7 +216,7 @@
         "timetable_filename" : "time_mizuho-kumamoto_up_1980spring.csv"
     },
     {
-        "name" : "はやぶさ（上り）",
+        "name" : "はやぶさ",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -144,7 +224,7 @@
         "timetable_filename" : "time_hayabusa_up_19781003.csv"
     },
     {
-        "name" : "はやぶさ（下り）",
+        "name" : "はやぶさ",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -152,7 +232,7 @@
         "timetable_filename" : "time_hayabusa_down_19781003.csv"
     },
     {
-        "name" : "さくら（上り）",
+        "name" : "さくら",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -160,7 +240,7 @@
         "timetable_filename" : "time_sakura_up_19820302.csv"
     },
     {
-        "name" : "さくら（下り）",
+        "name" : "さくら",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -168,7 +248,7 @@
         "timetable_filename" : "time_sakura_down_19820302.csv"
     },
     {
-        "name" : "さくら（上り：長崎）",
+        "name" : "さくら（長崎）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -176,7 +256,7 @@
         "timetable_filename" : "time_sakura-nagasaki_up_19820302.csv"
     },
     {
-        "name" : "さくら（下り：長崎）",
+        "name" : "さくら（長崎）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -184,7 +264,7 @@
         "timetable_filename" : "time_sakura-nagasaki_down_19820302.csv"
     },
     {
-        "name" : "さくら（上り：佐世保）",
+        "name" : "さくら（佐世保）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -192,7 +272,7 @@
         "timetable_filename" : "time_sakura-sasebo_up_19820302.csv"
     },
     {
-        "name" : "さくら（下り：佐世保）",
+        "name" : "さくら（佐世保）",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -200,7 +280,7 @@
         "timetable_filename" : "time_sakura-sasebo_down_19820302.csv"
     },
     {
-        "name" : "富士（上り）",
+        "name" : "富士",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",
@@ -208,7 +288,7 @@
         "timetable_filename" : "time_fuji_up_19820302.csv"
     },
     {
-        "name" : "富士（下り）",
+        "name" : "富士",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
         "trajectory_layername" : "trajectory",

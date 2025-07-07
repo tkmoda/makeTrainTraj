@@ -6,7 +6,7 @@
     },
     {
         "id": "time_mizuho-nagasaki_down_1980spring0",
-        "name": "\u307f\u305a\u307b\uff08\u4e0b\u308a\uff1a\u9577\u5d0e\uff09",
+        "name": "\u307f\u305a\u307b\uff08\u9577\u5d0e\uff09",
         "description": "",
         "availability": "1980-04-01T12:00:00+09:00/1980-04-02T12:00:00+09:00",
         "model": {
@@ -6901,7 +6901,7 @@
     },
     {
         "id": "time_mizuho-nagasaki_down_1980spring1",
-        "name": "\u307f\u305a\u307b\uff08\u4e0b\u308a\uff1a\u9577\u5d0e\uff09",
+        "name": "\u307f\u305a\u307b\uff08\u9577\u5d0e\uff09",
         "description": "",
         "availability": "1980-04-01T12:00:00+09:00/1980-04-02T12:00:00+09:00",
         "model": {
