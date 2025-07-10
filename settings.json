@@ -1,5 +1,118 @@
 [
     {
+        "name" : "明星１号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_myojo1_down_1980spring.csv"
+    },
+    {
+        "name" : "彗星１号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "fuji",
+        "timetable_filename" : "time_suisei1_down_1980spring.csv"
+    },
+    {
+        "name" : "明星３号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_myojo3_down_1980spring.csv"
+    },
+    {
+        "name" : "あかつき１号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "sakura",
+        "timetable_filename" : "time_akatuki1_down_1980spring.csv"
+    },
+    {
+        "name" : "あかつき１号（佐世保）",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "sakura-sasebo",
+        "timetable_filename" : "time_akatuki1-sasebo_down_1980spring.csv"
+    },
+    {
+        "name" : "あかつき１号（長崎）",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "sakura-nagasaki",
+        "timetable_filename" : "time_akatuki1-nagasaki_down_1980spring.csv"
+    },
+    {
+        "name" : "彗星３号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "fuji",
+        "timetable_filename" : "time_suisei3_down_1980spring.csv"
+    },
+    {
+        "name" : "あかつき３号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "sakura",
+        "timetable_filename" : "time_akatuki3_down_1980spring.csv"
+    },
+    {
+        "name" : "あかつき３号（佐世保）",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "sakura-sasebo",
+        "timetable_filename" : "time_akatuki3-sasebo_down_1980spring.csv"
+    },
+    {
+        "name" : "あかつき３号（長崎）",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "sakura-nagasaki",
+        "timetable_filename" : "time_akatuki3-nagasaki_down_1980spring.csv"
+    },
+    {
+        "name" : "なは",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_naha_down_1980spring.csv"
+    },
+    {
+        "name" : "明星７号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_myojo7_down_1980spring.csv"
+    },
+    {
+        "name" : "彗星５号",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "fuji",
+        "timetable_filename" : "time_suisei5_down_1980spring.csv"
+    },
+    {
+        "name" : "金星",
+        "geodata_filename" : "geodata.gpkg",
+        "station_layername" : "station",
+        "trajectory_layername" : "trajectory",
+        "trajectory_name" : "hayabusa",
+        "timetable_filename" : "time_kinsei_down_1980spring.csv"
+    },
+
+    {
         "name" : "出雲１号",
         "geodata_filename" : "geodata.gpkg",
         "station_layername" : "station",
